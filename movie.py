@@ -19,5 +19,6 @@ class Movie:
         }
 
     @classmethod
+    #Argument unpacking to get round JSON coming in disorganised
     def json_load(cls, json_data):
-        return Movie(name = json_data["name"], genre = json_data["genre"], watched = json_data["watched"])
+        return Movie(**json_data)
