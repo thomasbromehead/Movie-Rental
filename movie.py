@@ -17,3 +17,7 @@ class Movie:
             'genre': self.genre,
             'watched': self.watched
         }
+
+    @classmethod
+    def json_load(cls, json_data):
+        return Movie(json_data["name"], json_data["genre"], json_data["watched"])

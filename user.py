@@ -1,4 +1,5 @@
 from movie import Movie
+import json
 
 
 class User():
@@ -48,3 +49,13 @@ class User():
                 movie.json() for movie in self.movies
             ]
         }
+
+    @classmethod
+    def json_load(cls, json_data):
+        user = cls(json_data['name'])
+        movies = []
+        for movie in json_data["movies"]:
+            movies.append(Movie.json_load(movie))
+        user.movies = movies
+        return user
+
