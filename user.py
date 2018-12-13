@@ -1,5 +1,6 @@
 from movie import Movie
 
+
 class User():
     def __init__(self, name):
         self.name = name
@@ -26,15 +27,24 @@ class User():
             for movie in self.movies:
                 f.write("{},{},{}\n".format(movie.name, movie.genre, str(movie.watched)))
 
-    @classmethod
-    def load_from_file(cls, filename):
-        with open(filename, 'r') as f:
-            content = f.readlines()
-            username = content[0]
-            movies = []
-            for line in content[1:]:
-                movie_data = line.split(',') # ["name", "genre", "watched" which should be a boolean not a string ]
-                movies.append(Movie(movie_data[0], movie_data[1], movie_data[2] == "True"))
-            user = cls(username)
-            user.movies = movies
-            return user
+    #@classmethod this delimitates class methods, everything underneath is one.
+
+    #def load_from_file(cls, filename):
+    #    with open(filename, 'r') as f:
+    #       content = f.readlines()
+    #        username = content[0]
+    #        movies = []
+    #        for line in content[1:]:
+    #            movie_data = line.split(',') # ["name", "genre", "watched" which should be a boolean not a string ]
+    #            movies.append(Movie(movie_data[0], movie_data[1], movie_data[2] == "True"))
+    #        user = cls(username)
+    #        user.movies = movies
+    #        return user
+
+    def json_dump(self):
+        return {
+            'name': self.name,
+            'movies': [
+                movie.json() for movie in self.movies
+            ]
+        }

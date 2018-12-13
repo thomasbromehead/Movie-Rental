@@ -10,3 +10,10 @@ class Movie:
 
     def toggle_watched(self):
         self.watched = not self.watched
+
+    def json(self):
+        return {
+            'name': self.name,
+            'genre': self.genre,
+            'watched': self.watched
+        }
