@@ -1,6 +1,5 @@
 from movie import Movie
 
-
 class User():
     def __init__(self, name):
         self.name = name
@@ -20,4 +19,10 @@ class User():
 
     def delete_movie(self, name: object) -> object:
         self.movies = list(filter(lambda movie: movie.name != name, self.movies))
+
+    def save_to_file(self):
+        with open('my_file.csv', 'w') as f:
+            f.write(self.name + "\n")
+            for movie in self.movies:
+                f.write("{},{},{}\n".format(movie.name, movie.genre, str(movie.watched)))
 
