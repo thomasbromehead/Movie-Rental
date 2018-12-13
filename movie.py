@@ -20,4 +20,4 @@ class Movie:
 
     @classmethod
     def json_load(cls, json_data):
-        return Movie(json_data["name"], json_data["genre"], json_data["watched"])
+        return Movie(name = json_data["name"], genre = json_data["genre"], watched = json_data["watched"])
