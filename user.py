@@ -7,10 +7,7 @@ class User():
         return self.name
 
     def watched_movies(self):
-        watched_list = []
-        for movie in self.movies:
-            if movie.watched == True:
-                watched_list.append(movie)
-                return watched_list
-        return 'No movies watched yet'
+        #Filter returns a filter object, turn it into a list
+        movies_watched = list(filter(lambda x: x.watched, self.movies))
+        return movies_watched
 
