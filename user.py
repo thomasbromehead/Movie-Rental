@@ -22,6 +22,11 @@ class User():
     def delete_movie(self, name: object) -> object:
         self.movies = list(filter(lambda movie: movie.name != name, self.movies))
 
+    def set_watched(self, name):
+        for movie in self.movies:
+            if movie.name ==  name:
+                movie.toggle_watched()
+
     def save_to_file(self):
         with open('my_file.csv', 'w') as f:
             f.write(self.name + "\n")
@@ -42,9 +47,15 @@ class User():
     #        user.movies = movies
     #        return user
 
-    def json_dump(self):
+    def to_json(self):
         return {
             'name': self.name,
+            'movies': [
+                movie.json() for movie in self.movies
+            ]
+        }
+    def to_json_existing(self):
+        return {
             'movies': [
                 movie.json() for movie in self.movies
             ]
